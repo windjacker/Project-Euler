@@ -12,11 +12,11 @@ def matrix_way(n, m):
     
     if m==1:
         return n+1
+    
+    print n,m
+    mw[n,m] = matrix_way(n-1, m) + matrix_way(n, m-1)
+    return mw[n,m]
 
-    return matrix_way(n-1, m) + matrix_way(n, m-1)
-
-
-print(matrix_way(10, 10))
 
 solution = matrix_way(20, 20)
 
