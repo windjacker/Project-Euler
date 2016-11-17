@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
+from numpy import *
+
 def factorize(n):
     """
        Return the primefactors of n and their exponent as an list of
        tupels.
-
        Args:    Number n
        Return:  list of sorted 2-tupels with primefactor and exponent
-
        Example: factorize(2016)
                 [(2, 5), (3, 2), (7,1)]
     """
@@ -33,16 +33,17 @@ def factorize(n):
 def divisors(n):
     """
        Return the divisors of n as an list.
-
        Args:    Number n
        Return:  list of divisors, sorted
-
        Example: 
     """
-    div = []
     n_fac = factorize(n)
 
+    dt = array(1)
     for p in n_fac:
-        for i in range(p[1]+1):
-            div.append(p[0]**i)
+        dt = array( [dt * p[0]**i for i in range(p[1]+1)] )
     
+    return sorted(dt.reshape(-1).tolist())
+
+
+
