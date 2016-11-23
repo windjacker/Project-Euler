@@ -5,7 +5,7 @@ inp = input("Geplante Berechnungszeit in min: ");
 dt = int(inp)
 
 
-data = file('Primzahlen.txt', 'r+w')
+data = open('Primzahlen.txt', 'r+')
 
 primarr = []
 for i in data:
