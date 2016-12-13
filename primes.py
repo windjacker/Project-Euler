@@ -2,10 +2,10 @@ import time
 from datetime import datetime
 
 inp = input("Geplante Berechnungszeit in min: ");
-dt = int(inp)
+dt = float(inp)
 
 
-data = open('Primzahlen.txt', 'r+')
+data = file('Primzahlen.txt', 'r+w')
 
 primarr = []
 for i in data:
@@ -14,15 +14,18 @@ for i in data:
 
 t = time.time();
 i = primarr[-1]+2
-print("Start: {:%H:%M} - {}".format(datetime.now(), i) )
+print("Start: {:%H:%M:%S} - {}".format(datetime.now(), i) )
 while ( time.time()-t <= dt*60):
+    isPrime = True
     for p in primarr:
         if i%p==0:
-            i += 2
+            isPrime = False
             break
-    primarr.append(i)
-    data.write( str(i) + '\n' )
+        if p**2>i:
+            break
+    if isPrime:
+        primarr.append(i)
+        data.write( str(i) + '\n' )
     i += 2
 
-print("Stop : {:%H:%M} - {}".format(datetime.now(), i) )
-
+print("Stop : {:%H:%M:%S} - {}".format(datetime.now(), i) )
